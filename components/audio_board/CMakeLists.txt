@@ -5,6 +5,25 @@ set(COMPONENT_REQUIRES )
 set(COMPONENT_PRIV_REQUIRES esp_peripherals audio_sal audio_hal esp_dispatcher display_service)
 
 
+if (CONFIG_GENERIC_ESP32_BOARD)
+message(STATUS "Current board name is " CONFIG_GENERIC_ESP32_BOARD)
+list(APPEND COMPONENT_ADD_INCLUDEDIRS ./generic_board)
+set(COMPONENT_SRCS
+./generic_board/dummy_codec.c
+./generic_board/board.c
+./generic_board/board_pins_config.c
+)
+endif()
+
+if (CONFIG_PCBARTIST_ES8388_BOARD)
+message(STATUS "Current board name is " CONFIG_PCBARTIST_ES8388_BOARD)
+list(APPEND COMPONENT_ADD_INCLUDEDIRS ./pcbartist_es8388)
+set(COMPONENT_SRCS
+./pcbartist_es8388/board.c
+./pcbartist_es8388/board_pins_config.c
+)
+endif()
+
 if (CONFIG_ESP_LYRAT_V4_2_BOARD)
 message(STATUS "Current board name is " CONFIG_ESP_LYRAT_V4_2_BOARD)
 list(APPEND COMPONENT_ADD_INCLUDEDIRS ./lyrat_v4_2)
@@ -67,52 +86,6 @@ list(APPEND COMPONENT_ADD_INCLUDEDIRS ./esp32_s2_kaluga_1_v1_2)
 set(COMPONENT_SRCS
 ./esp32_s2_kaluga_1_v1_2/board.c
 ./esp32_s2_kaluga_1_v1_2/board_pins_config.c
-)
-endif()
-
-if (CONFIG_ESP32_S3_KORVO2_V3_BOARD)
-message(STATUS "Current board name is " CONFIG_ESP32_S3_KORVO2_V3_BOARD)
-list(APPEND COMPONENT_ADD_INCLUDEDIRS ./esp32_s3_korvo2_v3)
-set(COMPONENT_SRCS
-./esp32_s3_korvo2_v3/board.c
-./esp32_s3_korvo2_v3/board_pins_config.c
-)
-endif()
-
-if (CONFIG_ESP32_S3_KORVO2L_V1_BOARD)
-message(STATUS "Current board name is " CONFIG_ESP32_S3_KORVO2L_V1_BOARD)
-list(APPEND COMPONENT_ADD_INCLUDEDIRS ./esp32_s3_korvo2l_v1)
-set(COMPONENT_SRCS
-./esp32_s3_korvo2l_v1/board.c
-./esp32_s3_korvo2l_v1/board_pins_config.c
-)
-endif()
-
-if (CONFIG_ESP32_S3_BOX_LITE_BOARD)
-message(STATUS "Current board name is " CONFIG_ESP32_S3_BOX_LITE_BOARD)
-list(APPEND COMPONENT_ADD_INCLUDEDIRS ./esp32_s3_box_lite)
-set(COMPONENT_SRCS
-./esp32_s3_box_lite/board.c
-./esp32_s3_box_lite/board_pins_config.c
-)
-endif()
-
-if (CONFIG_ESP32_S3_BOX_BOARD)
-message(STATUS "Current board name is " CONFIG_ESP32_S3_BOX_BOARD)
-list(APPEND COMPONENT_ADD_INCLUDEDIRS ./esp32_s3_box)
-set(COMPONENT_SRCS
-./esp32_s3_box/board.c
-./esp32_s3_box/board_pins_config.c
-)
-endif()
-
-if (CONFIG_ESP32_C3_LYRA_V2_BOARD)
-message(STATUS "Current board name is " CONFIG_ESP32_C3_LYRA_V2_BOARD)
-list(APPEND COMPONENT_ADD_INCLUDEDIRS ./esp32_c3_lyra)
-set(COMPONENT_SRCS
-./esp32_c3_lyra/board.c
-./esp32_c3_lyra/board_pins_config.c
-./esp32_c3_lyra/C3_lyra_sys_pattern.c
 )
 endif()
 
